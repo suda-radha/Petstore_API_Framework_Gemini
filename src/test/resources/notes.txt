@@ -1,0 +1,6 @@
+possible commands to run from terminal
+
+mvn clean test// This will build the mvn project and show build success
+mvn clean test -Dtest=com.petstore.Runner// This will build the mvn project and run the Test Runner so that tests are run
+mvn clean test -Dtest=com.petstore.Runner -Dcucumber.filter.tags="@focus" // to run test with specific tags
+mvn clean test -Dtest=com.petstore.Runner -Dcucumber.filter.tags="@regression" // to run test with specific tags
