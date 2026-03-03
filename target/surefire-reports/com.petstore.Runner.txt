@@ -1,13 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.petstore.Runner
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.237 s <<< FAILURE! -- in com.petstore.Runner
-Petstore API Validations.Verify fetching a pet by ID -- Time elapsed: 0.350 s <<< FAILURE!
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.501 s <<< FAILURE! -- in com.petstore.Runner
+Petstore API Validations.Verify fetching a pet by ID -- Time elapsed: 0.333 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
-JSON path category.name doesn't match.
-Expected: string
-  Actual: Dog
+JSON path name doesn't match.
+Expected: doggie
+  Actual: \"dog\"
 
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
@@ -29,6 +29,6 @@ Expected: string
 	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
 	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:117)
 	at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
-	at stepDefinitions.PetstoreSteps.verifyPetCategory(PetstoreSteps.java:61)
-	at ✽.the category name should be "string"(file:///C:/Users/sudab/eclipse-workspace/Petstore_API_Framework_Gemini/src/test/resources/features/petstore.feature:16)
+	at stepDefinitions.PetstoreSteps.verifyPetName(PetstoreSteps.java:56)
+	at ✽.the pet name should be "doggie"(file:///C:/Users/sudab/eclipse-workspace/Petstore_API_Framework_Gemini/src/test/resources/features/petstore.feature:15)
 
