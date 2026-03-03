@@ -31,3 +31,11 @@ jobs:
       with:
         name: cucumber-html-report
         path: target/cucumber-reports.html
+    
+    - name: Upload Extent Spark Report
+      if: always() # This ensures the report uploads even if a test fails
+      uses: actions/upload-artifact@v4
+      with:
+        name: Extent-Spark-Report
+        path: SparkReport/
+        retention-days: 30
