@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.And;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.petstore.utilities.ConfigReader;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PetstoreSteps {
 	Response response;
@@ -126,6 +128,16 @@ public class PetstoreSteps {
         .then()
             .statusCode(404) // should have been 204 deleted 
             .log().all();
+    }
+    
+    //schema validation step
+    @Then("the response should match the {string} schema")
+    public void validate_schema(String schemaFileName) {
+        // This looks for the file in src/test/resources/schemas/
+        response.then().assertThat()
+                .body(matchesJsonSchemaInClasspath("schemas/" + schemaFileName));
+        
+        System.out.println("Verified: JSON structure matches " + schemaFileName);
     }
 
 }

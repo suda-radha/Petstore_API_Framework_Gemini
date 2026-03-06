@@ -7,7 +7,7 @@ Feature: Petstore API Validations
     Then the response status code should be 200
     And the first pet in the list should have status "available"
     
-  @focus @regression
+   @regression
    Scenario: Verify fetching a pet by ID
     Given I set the base URL for Petstore
     When I send a GET request to find a pet with ID "1"
@@ -44,3 +44,23 @@ Feature: Petstore API Validations
     Then I verify the pet is created and capture the ID
     And I delete the newly created pet
     Then the response status code should be 200
+    
+    @focus @regression
+    Scenario Outline: Data-Driven Pet Lifecycle with Schema Validation
+    Given I set the base URL for Petstore
+    When I create a new pet with the following details:
+      """
+      {
+        "id": <id>,
+        "name": "<name>",
+        "status": "<status>"
+      }
+      """
+    Then the response status code should be 200
+    And the response should match the "pet-schema.json" schema
+    Then I verify the pet is created and capture the ID
+    And I delete the newly created pet
+
+    Examples:
+      | id     | name    | status    |
+      | 112233 | Bruno   | available |
