@@ -5,5 +5,7 @@ com\petstore\tests\FirstAPITest.class
 com\petstore\utilities\DBUtils.class
 com\petstore\Runner.class
 stepDefinitions\PetstoreSteps.class
+com\petstore\utilities\VideoManager$1.class
 stepDefinitions\Hooks.class
 com\petstore\utilities\RetryTransformer.class
+com\petstore\utilities\VideoManager.class
