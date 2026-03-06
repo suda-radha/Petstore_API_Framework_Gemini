@@ -15,7 +15,7 @@ Feature: Petstore API Validations
     And the pet name should be "doggie"
     And the category name should be "string"
    
-   @regression 
+   @regression @ui
    Scenario: Hybrid Test - Create pet via API and verify on UI
     Given I set the base URL for Petstore
     When I create a new pet with the following details:

@@ -42,3 +42,13 @@ jobs:
         name: Extent-Spark-Report
         path: SparkReport/
         retention-days: 30
+
+    - name: Upload Test Results-Videos
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Full-Test-Execution-Package
+        path: |
+          SparkReport/
+          test-output/Videos/
+        retention-days: 30

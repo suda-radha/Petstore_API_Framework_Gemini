@@ -1,18 +1,25 @@
 package stepDefinitions;
 
 
+import com.petstore.utilities.VideoManager;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 public class Hooks {
 	@Before
-    public void setup() {
+    public void setup(Scenario scenario) throws Exception {
         System.out.println(">>> Starting Scenario Execution");
+     // Only start recording for UI tagged tests if you want to save space
+        if (scenario.getSourceTagNames().contains("@ui")) {
+            VideoManager.startRecording(scenario.getName());
+        }
     }
 
     @After
-    public void tearDown(Scenario scenario) {
+    public void tearDown(Scenario scenario) throws Exception {
+    	VideoManager.stopRecording();
         // This is where you would put driver.quit() in a real framework
      // If the scenario is a UI test and it fails, take a screenshot
         if (scenario.isFailed()) {
