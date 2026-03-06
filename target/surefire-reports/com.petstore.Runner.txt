@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.petstore.Runner
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.206 s -- in com.petstore.Runner
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.920 s <<< FAILURE! -- in com.petstore.Runner
+Petstore API Validations.API to DB Validation -- Time elapsed: 2.442 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "com.petstore.utilities.DBUtils.connection" is null
+	at com.petstore.utilities.DBUtils.getQueryResultMap(DBUtils.java:26)
+	at stepDefinitions.PetstoreSteps.verify_pet_in_db(PetstoreSteps.java:155)
+	at ✽.I verify the pet with ID 998877 exists in the database(file:///C:/Users/sudab/eclipse-workspace/Petstore_API_Framework_Gemini/src/test/resources/features/petstore.feature:77)
+

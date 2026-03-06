@@ -45,7 +45,7 @@ Feature: Petstore API Validations
     And I delete the newly created pet
     Then the response status code should be 200
     
-    @focus @regression
+    @regression
     Scenario Outline: Data-Driven Pet Lifecycle with Schema Validation
     Given I set the base URL for Petstore
     When I create a new pet with the following details:
@@ -64,3 +64,15 @@ Feature: Petstore API Validations
     Examples:
       | id     | name    | status    |
       | 112233 | Bruno   | available |
+      
+   #Database testing - jdbc
+    @focus @regression
+    Scenario: API to DB Validation
+    Given I set the base URL for Petstore
+    When I create a new pet with the following details:
+      """
+      { "id": 998877, "name": "Rex", "status": "available" }
+      """
+    Then the response status code should be 200
+    And I verify the pet with ID 998877 exists in the database
+    

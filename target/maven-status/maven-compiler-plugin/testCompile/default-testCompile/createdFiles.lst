@@ -1,5 +1,6 @@
 com\petstore\utilities\ConfigReader.class
 stepDefinitions\Hooks.class
 com\petstore\tests\FirstAPITest.class
+com\petstore\utilities\DBUtils.class
 com\petstore\Runner.class
 stepDefinitions\PetstoreSteps.class

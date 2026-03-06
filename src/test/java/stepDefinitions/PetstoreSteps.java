@@ -13,11 +13,17 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.petstore.utilities.ConfigReader;
+import com.petstore.utilities.DBUtils;
+
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PetstoreSteps {
@@ -138,6 +144,24 @@ public class PetstoreSteps {
                 .body(matchesJsonSchemaInClasspath("schemas/" + schemaFileName));
         
         System.out.println("Verified: JSON structure matches " + schemaFileName);
+    }
+    
+    //DB connection step
+    @Then("I verify the pet with ID {long} exists in the database")
+    public void verify_pet_in_db(long petId) {
+        DBUtils.createConnection();
+        
+        String query = "SELECT name FROM pets WHERE id = " + petId;
+        List<Map<String, Object>> result = DBUtils.getQueryResultMap(query);
+        
+        // Assert that we found exactly 1 record
+        Assert.assertFalse("Pet not found in DB!", result.isEmpty());
+        
+        // Optional: Verify the name matches too
+        String dbName = result.get(0).get("name").toString();
+        Assert.assertEquals("Rex", dbName);
+        
+        DBUtils.destroy();
     }
 
 }
