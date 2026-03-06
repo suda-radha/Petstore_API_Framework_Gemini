@@ -35,8 +35,8 @@ jobs:
       with:
         paths: |
           target/surefire-reports/TEST-*.xml
-          target/surefire-reports/testng-results.xml
-        
+          **/testng-results.xml
+          target/surefire-reports/junitreports/TEST-*.xml
       if: always()
 
     - name: Upload Cucumber Report
