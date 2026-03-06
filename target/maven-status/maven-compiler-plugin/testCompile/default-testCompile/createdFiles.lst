@@ -1,6 +1,9 @@
+com\petstore\RunnerTestNG.class
 com\petstore\utilities\ConfigReader.class
-stepDefinitions\Hooks.class
+com\petstore\utilities\RetryAnalyzer.class
 com\petstore\tests\FirstAPITest.class
 com\petstore\utilities\DBUtils.class
 com\petstore\Runner.class
 stepDefinitions\PetstoreSteps.class
+stepDefinitions\Hooks.class
+com\petstore\utilities\RetryTransformer.class
