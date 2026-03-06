@@ -26,7 +26,7 @@ jobs:
       run: mvn clean test -Dtest=com.petstore.Runner -Dcucumber.filter.tags="@regression"
 
     - name: Run Automation Tests-TestNG.xml
-      run: mvn clean test -DsuiteXmlFile=testng.xml -Dcucumber.filter.tags="@regression"
+      run: mvn clean test -DsuiteXmlFile=testng.xml -Dcucumber.filter.tags="@regression" -Denv=int
 
     - name: Upload Cucumber Report
       if: always() # Upload reports even if tests fail

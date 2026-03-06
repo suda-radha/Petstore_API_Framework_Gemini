@@ -34,8 +34,10 @@ public class PetstoreSteps {
 
 	@Given("I set the base URL for Petstore")
 	public void setBaseUrl() {
-		baseURI = ConfigReader.getProperty("petstore.base.url");
 		//baseURI = "https://petstore.swagger.io/v2";
+		//baseURI = ConfigReader.getProperty("petstore.base.url");
+		baseURI = ConfigReader.getBaseUrl();
+		System.out.println("Running on Environment URL: " + baseURI);
 	}
 
 	@When("I search for pets with status {string}")
