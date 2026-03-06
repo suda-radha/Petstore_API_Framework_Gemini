@@ -28,6 +28,14 @@ jobs:
     - name: Run Automation Tests-TestNG.xml
       run: mvn clean test -DsuiteXmlFile=testng.xml -Dcucumber.filter.tags="@regression" -Denv=int
 
+      # NEW STEP: Extracts the pass/fail counts from your target/surefire-reports
+    - name: Extract Test Results
+      id: test_results
+      uses: test-summary/action@v2
+      with:
+        paths: "target/surefire-reports/junitreports/TEST-*.xml"
+      if: always()
+
     - name: Upload Cucumber Report
       if: always() # Upload reports even if tests fail
       uses: actions/upload-artifact@v4
@@ -69,6 +77,12 @@ jobs:
           
           Build Status: ${{ job.status }}
           Environment: INT
+
+          📊 TEST SUMMARY:
+          Total Tests: ${{ steps.test_results.outputs.total }}
+          Passed: ${{ steps.test_results.outputs.passed }}
+          Failed: ${{ steps.test_results.outputs.failed }}
+          Skipped: ${{ steps.test_results.outputs.skipped }}
           
           You can download the full Spark Report and Execution Videos from the GitHub Actions artifacts section.
         attachments: SparkReport/Index.html
