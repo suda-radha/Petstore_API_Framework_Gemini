@@ -52,3 +52,23 @@ jobs:
           SparkReport/
           test-output/Videos/
         retention-days: 30
+
+   - name: Send Email Notification
+      if: always() # Ensure email is sent even if tests fail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "Test Execution Report - Petstore API Framework"
+        to: subaar2018@gmail.com
+        from: Gemini Automation -Suda Test Automation Results
+        body: |
+          The latest automation run for Petstore_API_Framework_Gemini has completed.
+          
+          Build Status: ${{ job.status }}
+          Environment: INT
+          
+          You can download the full Spark Report and Execution Videos from the GitHub Actions artifacts section.
+        attachments: SparkReport/Index.html
